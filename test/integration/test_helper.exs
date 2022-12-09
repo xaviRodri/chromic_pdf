@@ -61,4 +61,6 @@ ExUnit.configure(
   exclude: [:skip | excludes]
 )
 
+:ok = ChromicPDF.warmup()
+
 ExUnit.start()

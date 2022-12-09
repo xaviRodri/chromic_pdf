@@ -20,5 +20,4 @@ jobs:
       - uses: actions/checkout@v3
       - run: mix deps.get
       - run: mix compile
-      - run: /usr/bin/chromium-browser --headless --dump-dom about:blank &>/dev/null
       - run: mix test test/integration/stress_github_actions_test.exs
