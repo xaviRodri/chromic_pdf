@@ -1,0 +1,24 @@
+name: Test
+on: [pull_request]
+jobs:
+  test:
+    name: ${{matrix.mix_env}} tests on Elixir ${{matrix.elixir}} / OTP ${{matrix.otp}}
+    strategy:
+      matrix:
+        otp: ['24.2.2']
+        elixir: ['1.13.4']
+        mix_env: ['integration']
+    env:
+      MIX_ENV: ${{matrix.mix_env}}
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get install ghostscript poppler-utils
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{matrix.otp}}
+          elixir-version: ${{matrix.elixir}}
+      - uses: actions/checkout@v3
+      - run: mix deps.get
+      - run: mix compile
+      - run: /usr/bin/chromium-browser --headless --dump-dom about:blank &>/dev/null
+      - run: mix test test/integration/stress_github_actions_test.exs
