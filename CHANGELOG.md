@@ -1,3 +1,9 @@
+## Unreleased
+
+### Added
+
+- Add `warmup/1` to allow one-off launches of the Chrome executable with our default arguments.
+
 ## [1.4.0] - 2022-12-07
 
 ### Added

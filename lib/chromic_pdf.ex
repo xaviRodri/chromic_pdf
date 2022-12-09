@@ -299,4 +299,22 @@ defmodule ChromicPDF do
   """
 
   use ChromicPDF.Supervisor
+
+  @doc """
+  Runs a one-off Chrome task to warm up Chrome's caches.
+
+  TODO
+
+  ## Usage
+
+      # in your test_helper.exs
+      ChromicPDF.warmup()
+      ...
+      ExUnit.start()
+  """
+  @spec warmup() :: :ok
+  @spec warmup([ChromicPDF.chrome_runner_option()]) :: :ok
+  def warmup(opts \\ []) do
+    ChromicPDF.ChromeRunner.warmup(opts)
+  end
 end
