@@ -29,7 +29,7 @@ defmodule ChromicPDF.GhostscriptRunner do
 
   @ghostscript_bin "gs"
   @ghostscript_safer_version [9, 28]
-  @ghostscript_new_interpreter_version {[9, 56], [10, 2]}
+  @ghostscript_new_interpreter_version {[9, 56], [10]}
 
   @spec run_postscript(binary(), binary()) :: binary()
   def run_postscript(pdf_path, ps_path) do
